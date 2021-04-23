@@ -16,8 +16,8 @@ namespace WebUI.Data.Seeds
                     Flooring = 4,
                     Capacity = "200",
                     LivingRoomCount = 158,
-                    ServiceRoomCount = 12,
-                    Map = "Общежитие №1",
+                    ServiceRoomCount = 12, 
+                    Map= "Общежитие №1",
                     OfficeRoomCount = 5,
                 },
             };

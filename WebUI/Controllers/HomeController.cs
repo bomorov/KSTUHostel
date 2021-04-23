@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using WebUI.Data;
 using WebUI.Models;
 
 namespace WebUI.Controllers
@@ -9,14 +12,9 @@ namespace WebUI.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, IWebHostEnvironment appEnvironment)
         {
             _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
 
         public IActionResult Privacy()

@@ -26972,6 +26972,24 @@ namespace WebUI.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WebUI.Models.FileModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FileModels");
+                });
+
             modelBuilder.Entity("WebUI.Models.Hostel", b =>
                 {
                     b.Property<int>("Id")
@@ -27132,12 +27150,41 @@ namespace WebUI.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "00000000000001",
                             NormalizedUserName = "00000000000001",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKN7V3NU9Gz3XCRms9MQL3xmHDwP/UZaWtXpQjyy81X0KJcQ9URL8ujOeDSCQWe2ww==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKbjikjIrEbticJ9FcxethU6DtADPgxECbVgg/p1nyVb055uX2+nIJRDRJBf2SDXVg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "0382afaf-aeae-47ef-983d-c194ba94c64e",
                             TwoFactorEnabled = false,
                             UserName = "superadmin"
                         });
+                });
+
+            modelBuilder.Entity("WebUI.Models.NewsFilesNC", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("text");
+
+                    b.Property<int>("HostelId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("OrderBy")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HostelId");
+
+                    b.ToTable("NewsFilesNC");
                 });
 
             modelBuilder.Entity("WebUI.Models.Student", b =>
@@ -27286,6 +27333,17 @@ namespace WebUI.Data.Migrations
                         .WithMany("Users")
                         .HasForeignKey("CoateRecordId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("WebUI.Models.NewsFilesNC", b =>
+                {
+                    b.HasOne("WebUI.Models.Hostel", "Hostel")
+                        .WithMany()
+                        .HasForeignKey("HostelId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Hostel");
                 });
 
             modelBuilder.Entity("WebUI.Models.Student", b =>

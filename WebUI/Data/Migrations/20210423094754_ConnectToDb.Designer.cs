@@ -10,8 +10,8 @@ using WebUI.Data;
 namespace WebUI.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210422115135_CoateSeed")]
-    partial class CoateSeed
+    [Migration("20210423094754_ConnectToDb")]
+    partial class ConnectToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26974,6 +26974,24 @@ namespace WebUI.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WebUI.Models.FileModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FileModels");
+                });
+
             modelBuilder.Entity("WebUI.Models.Hostel", b =>
                 {
                     b.Property<int>("Id")
@@ -27011,6 +27029,19 @@ namespace WebUI.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Hostels");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Capacity = "200",
+                            Flooring = 4,
+                            LivingRoomCount = 158,
+                            Map = "Общежитие №1",
+                            Name = "Общежитие №1",
+                            OfficeRoomCount = 5,
+                            ServiceRoomCount = 12
+                        });
                 });
 
             modelBuilder.Entity("WebUI.Models.Identity.ApplicationRole", b =>
@@ -27121,12 +27152,41 @@ namespace WebUI.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "00000000000001",
                             NormalizedUserName = "00000000000001",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDjsGDDhbys8T3Y3C6obRuvK/NsKTwMFWdHbDVb1VSG5fB2D41wkt3Jttfq+IulADw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKbjikjIrEbticJ9FcxethU6DtADPgxECbVgg/p1nyVb055uX2+nIJRDRJBf2SDXVg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "0382afaf-aeae-47ef-983d-c194ba94c64e",
                             TwoFactorEnabled = false,
                             UserName = "superadmin"
                         });
+                });
+
+            modelBuilder.Entity("WebUI.Models.NewsFilesNC", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("text");
+
+                    b.Property<int>("HostelId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("OrderBy")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HostelId");
+
+                    b.ToTable("NewsFilesNC");
                 });
 
             modelBuilder.Entity("WebUI.Models.Student", b =>
@@ -27205,7 +27265,7 @@ namespace WebUI.Data.Migrations
 
                     b.HasIndex("VillageId");
 
-                    b.ToTable("Student");
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -27275,6 +27335,17 @@ namespace WebUI.Data.Migrations
                         .WithMany("Users")
                         .HasForeignKey("CoateRecordId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("WebUI.Models.NewsFilesNC", b =>
+                {
+                    b.HasOne("WebUI.Models.Hostel", "Hostel")
+                        .WithMany()
+                        .HasForeignKey("HostelId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Hostel");
                 });
 
             modelBuilder.Entity("WebUI.Models.Student", b =>
