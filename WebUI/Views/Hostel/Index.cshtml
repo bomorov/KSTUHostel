@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebUI.Models.DTOs.HostelDto>
+
+@{ ViewData["Title"] = "Index"; }
+
+<h1>Список Общежитий</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Flooring)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LivingRoomCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceRoomCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfficeRoomCount)
+            </th>
+            <th>
+                Карта здания
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Flooring)
+                </th>
+
+                <th>
+                    @Html.DisplayFor(modelItem => item.Capacity)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.LivingRoomCount)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.ServiceRoomCount)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.OfficeRoomCount)
+                </th>
+                <th>
+                    <img src="@Url.Content(item.Map)">
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

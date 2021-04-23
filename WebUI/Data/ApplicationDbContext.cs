@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
+using System.Linq;
+using System.Reflection;
+using WebUI.Data.Seeds;
 using WebUI.Models;
 using WebUI.Models.Identity;
 
@@ -19,6 +18,18 @@ namespace WebUI.Data
         public DbSet<Hostel> Hostels { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
-
+        public DbSet<Student> Students { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            foreach (var foreignKey in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+            builder.AddCoateSeedData();
+            builder.AddApplicationUserSeedData();
+            builder.AddHostelSeedData();
+        }
     }
 }

@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "JsZS+tlOoJbVlZuTCJUoor4lf+aGUeE6Ce567653Xy+XDNp7ihuzeOCGTdghR60e1FW4U9ai4oGjJXHSOwNbvw==",
+  "dgSpecHash": "ncbhNH074wphY20rPGs8l+OL1ZvoNPZOtr5isxM/OPhzSO63pQRy87kVQ1iVcRaf9tFuQYb3PDi8QNqYTxc4aw==",
   "success": true,
   "projectFilePath": "D:\\git\\own\\Hostel\\WebUI\\WebUI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.4\\microsoft.aspnetcore.cryptography.internal.5.0.4.nupkg.sha512",
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.4\\microsoft.aspnetcore.cryptography.keyderivation.5.0.4.nupkg.sha512",
@@ -87,7 +89,7 @@
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\system.private.datacontractserialization\\4.3.0\\system.private.datacontractserialization.4.3.0.nupkg.sha512",
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\system.private.uri\\4.3.2\\system.private.uri.4.3.2.nupkg.sha512",
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
-    "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512",
+    "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.3.0\\system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\system.reflection.emit.lightweight\\4.3.0\\system.reflection.emit.lightweight.4.3.0.nupkg.sha512",
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",

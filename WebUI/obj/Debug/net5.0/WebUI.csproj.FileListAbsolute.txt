@@ -394,3 +394,6 @@ D:\git\own\Hostel\WebUI\obj\Debug\net5.0\WebUI.dll
 D:\git\own\Hostel\WebUI\obj\Debug\net5.0\ref\WebUI.dll
 D:\git\own\Hostel\WebUI\obj\Debug\net5.0\WebUI.pdb
 D:\git\own\Hostel\WebUI\obj\Debug\net5.0\WebUI.genruntimeconfig.cache
+D:\git\own\Hostel\WebUI\bin\Debug\net5.0\AutoMapper.dll
+D:\git\own\Hostel\WebUI\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\git\own\Hostel\WebUI\obj\Debug\net5.0\Razor\Views\Hostel\Index.cshtml.g.cs
