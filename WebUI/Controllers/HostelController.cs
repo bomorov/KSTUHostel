@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -92,7 +93,7 @@ namespace WebUI.Controllers
                             await item.CopyToAsync(stream);
                         }
                         memory.Position = 0;
-                        string fpath = "/uploads/" + narodGerC.Id.ToString() + "/" + fileName;
+                        string fpath = "/Files/" + narodGerC.Id.ToString() + "/" + fileName;
                         _context.NewsFilesNC.Add(new NewsFilesNC() { HostelId = narodGerC.Id, Path = fpath, CreateDate = DateTime.Now, FileName = fileName, OrderBy = order });
                         await _context.SaveChangesAsync();
                         if (order == 1) { narodGerC.Map = fpath; await _context.SaveChangesAsync(); }
@@ -109,5 +110,25 @@ namespace WebUI.Controllers
 
             return View(narodGerC);
         }
+
+
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var hostel = await _context.Hostels
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (hostel == null)
+            {
+                return NotFound();
+            }
+            ViewBag.NewsFiles = _context.NewsFilesNC.Where(x => x.HostelId == id ).ToList();
+            return View(hostel);
+        }
+
     }
 }

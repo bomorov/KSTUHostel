@@ -33,5 +33,6 @@ namespace WebUI.Data
             builder.AddApplicationUserSeedData();
             builder.AddHostelSeedData();
         }
+        public DbSet<WebUI.Models.CoateRecord> CoateRecord { get; set; }
     }
 }
