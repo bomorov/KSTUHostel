@@ -56,7 +56,14 @@
                     @Html.DisplayFor(modelItem => item.OfficeRoomCount)
                 </th>
                 <th>
-                    <img src="@Url.Content(item.Map)">
+                    @foreach (NewsFilesNC item1 in @ViewBag.NewsFilesNC)
+                    {
+                       
+                        <div class="carousel-item active">
+                            <img width="100%" src="@item1.Path" alt="" />
+                            </div>
+                      
+                    }
                 </th>
             </tr>
         }
