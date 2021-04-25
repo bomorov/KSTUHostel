@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace WebUI.Data.Migrations
 {
-    public partial class ConnectToDb : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -198,7 +198,7 @@ namespace WebUI.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "NewsFilesNC",
+                name: "Images",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -211,9 +211,9 @@ namespace WebUI.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_NewsFilesNC", x => x.Id);
+                    table.PrimaryKey("PK_Images", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_NewsFilesNC_Hostels_HostelId",
+                        name: "FK_Images_Hostels_HostelId",
                         column: x => x.HostelId,
                         principalTable: "Hostels",
                         principalColumn: "Id",
@@ -308,7 +308,7 @@ namespace WebUI.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "CoateRecordId", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, null, "c94b51e5-52f3-4a06-a91b-f22a1588f9a4", null, false, false, null, "00000000000001", "00000000000001", "AQAAAAEAACcQAAAAEKbjikjIrEbticJ9FcxethU6DtADPgxECbVgg/p1nyVb055uX2+nIJRDRJBf2SDXVg==", null, false, "0382afaf-aeae-47ef-983d-c194ba94c64e", false, "superadmin" });
+                values: new object[] { 1, 0, null, "c94b51e5-52f3-4a06-a91b-f22a1588f9a4", null, false, false, null, "00000000000001", "00000000000001", "AQAAAAEAACcQAAAAEBUPU+da6Qf+57j94hSao0iqnB2hUfwQ2DjQrXLmBVgWa0Z5DG/XPYwxiPfXeoNfCA==", null, false, "0382afaf-aeae-47ef-983d-c194ba94c64e", false, "superadmin" });
 
             migrationBuilder.InsertData(
                 table: "CoateRecord",
@@ -2836,8 +2836,8 @@ namespace WebUI.Data.Migrations
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_NewsFilesNC_HostelId",
-                table: "NewsFilesNC",
+                name: "IX_Images_HostelId",
+                table: "Images",
                 column: "HostelId");
 
             migrationBuilder.CreateIndex(
@@ -2887,7 +2887,7 @@ namespace WebUI.Data.Migrations
                 name: "FileModels");
 
             migrationBuilder.DropTable(
-                name: "NewsFilesNC");
+                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "Students");

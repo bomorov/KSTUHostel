@@ -19,7 +19,7 @@ namespace WebUI.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
         public DbSet<Student> Students { get; set; }
-        public DbSet<NewsFilesNC> NewsFilesNC { get; set; }
+        public DbSet<Image> Images { get; set; }
         public DbSet<FileModel> FileModels { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {

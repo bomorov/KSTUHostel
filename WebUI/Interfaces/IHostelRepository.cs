@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,10 +37,11 @@ namespace WebUI.Interfaces
             return await _mapper.ProjectTo<HostelDto>(_context.Hostels).ToListAsync();
         }
 
-        //public async Task<IActionResult> Create(IFormFile uploadFile)
-        //{
-
-        //    return View();
-        //}
+        public async Task<Hostel> Create(Hostel hostel)
+        {
+            _context.Hostels.Add(hostel);
+            await _context.SaveChangesAsync();
+            return hostel;
+        }
     }
 }

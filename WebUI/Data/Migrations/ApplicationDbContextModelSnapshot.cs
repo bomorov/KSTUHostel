@@ -27150,7 +27150,7 @@ namespace WebUI.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "00000000000001",
                             NormalizedUserName = "00000000000001",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKbjikjIrEbticJ9FcxethU6DtADPgxECbVgg/p1nyVb055uX2+nIJRDRJBf2SDXVg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBUPU+da6Qf+57j94hSao0iqnB2hUfwQ2DjQrXLmBVgWa0Z5DG/XPYwxiPfXeoNfCA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "0382afaf-aeae-47ef-983d-c194ba94c64e",
                             TwoFactorEnabled = false,
@@ -27158,7 +27158,7 @@ namespace WebUI.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WebUI.Models.NewsFilesNC", b =>
+            modelBuilder.Entity("WebUI.Models.Image", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -27184,7 +27184,7 @@ namespace WebUI.Data.Migrations
 
                     b.HasIndex("HostelId");
 
-                    b.ToTable("NewsFilesNC");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("WebUI.Models.Student", b =>
@@ -27335,7 +27335,7 @@ namespace WebUI.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("WebUI.Models.NewsFilesNC", b =>
+            modelBuilder.Entity("WebUI.Models.Image", b =>
                 {
                     b.HasOne("WebUI.Models.Hostel", "Hostel")
                         .WithMany()

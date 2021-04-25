@@ -57,27 +57,27 @@ namespace WebUI.Controllers
         {
             var applicationDbContext = _context.Hostels;
 
-            ViewBag.NewsFilesNC = _context.NewsFilesNC;
+            ViewBag.Images = _context.Images;
 
-            Hostel narodGerC = new Hostel();
+            Hostel hostel = new Hostel();
 
-            return View(narodGerC);
+            return View(hostel);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
        
-        public async Task<IActionResult> Create(Hostel narodGerC, List<IFormFile> files)
+        public async Task<IActionResult> Create(Hostel hostel, List<IFormFile> files)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(narodGerC);
+                _context.Add(hostel);
                 await _context.SaveChangesAsync();
 
                 try
                 {
-                    string directory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Files\\" + narodGerC.Id.ToString());
+                    string directory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Files\\" + hostel.Id.ToString());
                     if (!Directory.Exists(directory))
                     {
                         DirectoryInfo di = Directory.CreateDirectory(directory);
@@ -93,22 +93,22 @@ namespace WebUI.Controllers
                             await item.CopyToAsync(stream);
                         }
                         memory.Position = 0;
-                        string fpath = "/Files/" + narodGerC.Id.ToString() + "/" + fileName;
-                        _context.NewsFilesNC.Add(new NewsFilesNC() { HostelId = narodGerC.Id, Path = fpath, CreateDate = DateTime.Now, FileName = fileName, OrderBy = order });
+                        string fpath = "/Files/" + hostel.Id.ToString() + "/" + fileName;
+                        _context.Images.Add(new Image { HostelId = hostel.Id, Path = fpath, CreateDate = DateTime.Now, FileName = fileName, OrderBy = order });
                         await _context.SaveChangesAsync();
-                        if (order == 1) { narodGerC.Map = fpath; await _context.SaveChangesAsync(); }
+                        if (order == 1) { hostel.Map = fpath; await _context.SaveChangesAsync(); }
                         order++;
                     }
                 }
                 catch
                 {
-                    ViewBag.Error = "Oshibka";
+                    ViewBag.Error = "Error";
                     return View();
                 }
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(narodGerC);
+            return View(hostel);
         }
 
 
@@ -126,7 +126,7 @@ namespace WebUI.Controllers
             {
                 return NotFound();
             }
-            ViewBag.NewsFiles = _context.NewsFilesNC.Where(x => x.HostelId == id ).ToList();
+            ViewBag.Images = _context.Images.Where(x => x.HostelId == id ).ToList();
             return View(hostel);
         }
 
