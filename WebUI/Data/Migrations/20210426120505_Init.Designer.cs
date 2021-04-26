@@ -10,7 +10,7 @@ using WebUI.Data;
 namespace WebUI.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210425060124_Init")]
+    [Migration("20210426120505_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -122,6 +122,35 @@ namespace WebUI.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("WebUI.Models.Avatar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("text");
+
+                    b.Property<int>("OrderBy")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("text");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Avatars");
+                });
+
             modelBuilder.Entity("WebUI.Models.CoateRecord", b =>
                 {
                     b.Property<int>("Id")
@@ -160,7 +189,7 @@ namespace WebUI.Data.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("CoateRecord");
+                    b.ToTable("CoateRecords");
 
                     b.HasData(
                         new
@@ -26974,24 +27003,6 @@ namespace WebUI.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WebUI.Models.FileModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Path")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FileModels");
-                });
-
             modelBuilder.Entity("WebUI.Models.Hostel", b =>
                 {
                     b.Property<int>("Id")
@@ -27152,7 +27163,7 @@ namespace WebUI.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "00000000000001",
                             NormalizedUserName = "00000000000001",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBUPU+da6Qf+57j94hSao0iqnB2hUfwQ2DjQrXLmBVgWa0Z5DG/XPYwxiPfXeoNfCA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL7ONdPwrD7TLAU5rmP+RTzqFT03V9lNBtBCohYavSzGF8T2BQsvuGAtvz0nJgo81A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "0382afaf-aeae-47ef-983d-c194ba94c64e",
                             TwoFactorEnabled = false,
@@ -27317,6 +27328,17 @@ namespace WebUI.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WebUI.Models.Avatar", b =>
+                {
+                    b.HasOne("WebUI.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("WebUI.Models.CoateRecord", b =>

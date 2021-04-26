@@ -41,8 +41,14 @@ namespace WebUI
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();
             services.AddScoped<IHostelRepository, HostelRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddRazorPages();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddMvc()
+                .AddJsonOptions(options => {
+                    options.JsonSerializerOptions.IgnoreNullValues = true;
+                });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

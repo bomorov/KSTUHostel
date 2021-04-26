@@ -24,14 +24,5 @@ namespace WebUI.Models
         [Display(Name = "Количество помещений служебного назначения.")]
         public int OfficeRoomCount { get; set; }
     }
-    public class NewsFilesNC
-    {
-        public int Id { get; set; }
-        public string FileName { get; set; }
-        public string Path { get; set; }
-        public int OrderBy { get; set; }
-        public DateTime CreateDate { get; set; }
-        public int HostelId { get; set; }
-        public Hostel Hostel { get; set; }
-    }
+   
 }

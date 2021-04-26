@@ -1,0 +1,107 @@
+﻿@model WebUI.Models.Student
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MidlleName" class="control-label"></label>
+                <input asp-for="MidlleName" class="form-control" />
+                <span asp-validation-for="MidlleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PassportDta" class="control-label"></label>
+                <input asp-for="PassportDta" class="form-control" />
+                <span asp-validation-for="PassportDta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegionOrCityId" class="control-label"></label>
+                <select id="region-select" name="RegionOrCityId" class="form-control" style="border: 1px solid #ccc;" asp-items="ViewBag.RegionOrCityId">
+                    <option selected> Выберите область </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DistrictOrCityId" class="control-label"></label>
+                <select id="region-select" name="DistrictOrCityId" class="form-control" style="border: 1px solid #ccc;" asp-items="ViewBag.DistrictOrCityId">
+                    <option selected> Выберите область </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CountrysideOrCityId" class="control-label"></label>
+                <select id="region-select" name="CountrysideOrCityId" class="form-control" style="border: 1px solid #ccc;" asp-items="ViewBag.CountrysideOrCityId">
+                    <option selected> Выберите область </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VillageId" class="control-label"></label>
+                <select id="region-select" name="VillageId" class="form-control" style="border: 1px solid #ccc;" asp-items="ViewBag.VillageId">
+                    <option selected> Выберите область </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Street" class="control-label"></label>
+                <input asp-for="Street" class="form-control" />
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="House" class="control-label"></label>
+                <input asp-for="House" class="form-control" />
+                <span asp-validation-for="House" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Flat" class="control-label"></label>
+                <input asp-for="Flat" class="form-control" />
+                <span asp-validation-for="Flat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <input type="file"
+                           id="files" name="files"
+                           multiple="multiple"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/getCountryside.js"></script>
+    <script src="~/js/getDistrict.js"></script>
+    <script src="~/js/getVillage.js"></script>
+}

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BSjaKJV9jDC1B7Ugfok62hqa0G+CI/oRwo38t8o5RWqBKy5Vf5ytPLDQjx+RJx4Isxl0beEHn9bJ49+9D6nf0A==",
+  "dgSpecHash": "/yJK/nm9FtJt0cjT/ejOcwE5RvT9hG4C5uE8sOgEiBPJdP5cqea+e51am3LJGlJwXXk27e6xKCCC4Yfpi4rzfA==",
   "success": true,
   "projectFilePath": "D:\\git\\own\\Hostel\\WebUI\\WebUI.csproj",
   "expectedPackageFiles": [
@@ -68,7 +68,7 @@
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\microsoft.visualstudio.web.codegenerators.mvc\\5.0.2\\microsoft.visualstudio.web.codegenerators.mvc.5.0.2.nupkg.sha512",
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
-    "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\npgsql\\5.0.4\\npgsql.5.0.4.nupkg.sha512",
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\5.0.5.1\\npgsql.entityframeworkcore.postgresql.5.0.5.1.nupkg.sha512",
     "C:\\Users\\NB207BEKMYRZA\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",

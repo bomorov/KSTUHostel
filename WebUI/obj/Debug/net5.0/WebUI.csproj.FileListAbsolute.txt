@@ -448,3 +448,6 @@ D:\git\own\Hostel\WebUI\obj\Debug\net5.0\Razor\Views\CoateRecords\Details.cshtml
 D:\git\own\Hostel\WebUI\obj\Debug\net5.0\Razor\Views\CoateRecords\Edit.cshtml.g.cs
 D:\git\own\Hostel\WebUI\obj\Debug\net5.0\Razor\Views\CoateRecords\Index.cshtml.g.cs
 D:\git\own\Hostel\WebUI\obj\Debug\net5.0\Razor\Views\Hostel\Details.cshtml.g.cs
+D:\git\own\Hostel\WebUI\obj\Debug\net5.0\Razor\Views\Student\Index.cshtml.g.cs
+D:\git\own\Hostel\WebUI\obj\Debug\net5.0\Razor\Views\Student\Create.cshtml.g.cs
+D:\git\own\Hostel\WebUI\obj\Debug\net5.0\Razor\Views\Student\Details.cshtml.g.cs

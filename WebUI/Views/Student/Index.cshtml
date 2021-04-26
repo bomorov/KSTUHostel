@@ -1,0 +1,102 @@
+﻿@model IEnumerable<WebUI.Models.DTOs.StudentDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MidlleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PassportDta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegionOrCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DistrictOrCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountrysideOrCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Village)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.House)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Flat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Path)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MidlleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PassportDta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegionOrCity.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DistrictOrCity.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountrysideOrCity.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Village.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.House)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Path)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -19,11 +19,13 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.5.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Files\" />
+    <Folder Include="wwwroot\Files\Hostels\" />
+    <Folder Include="wwwroot\Files\Students\" />
   </ItemGroup>
 
 </Project>

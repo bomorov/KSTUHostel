@@ -24,7 +24,7 @@ namespace WebUI.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CoateRecord",
+                name: "CoateRecords",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -41,27 +41,13 @@ namespace WebUI.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CoateRecord", x => x.Id);
+                    table.PrimaryKey("PK_CoateRecords", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CoateRecord_CoateRecord_ParentId",
+                        name: "FK_CoateRecords_CoateRecords_ParentId",
                         column: x => x.ParentId,
-                        principalTable: "CoateRecord",
+                        principalTable: "CoateRecords",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FileModels",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    Path = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FileModels", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -130,9 +116,9 @@ namespace WebUI.Data.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_CoateRecord_CoateRecordId",
+                        name: "FK_AspNetUsers_CoateRecords_CoateRecordId",
                         column: x => x.CoateRecordId,
-                        principalTable: "CoateRecord",
+                        principalTable: "CoateRecords",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -166,33 +152,33 @@ namespace WebUI.Data.Migrations
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Students_CoateRecord_CoateRecordId",
+                        name: "FK_Students_CoateRecords_CoateRecordId",
                         column: x => x.CoateRecordId,
-                        principalTable: "CoateRecord",
+                        principalTable: "CoateRecords",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Students_CoateRecord_CountrysideOrCityId",
+                        name: "FK_Students_CoateRecords_CountrysideOrCityId",
                         column: x => x.CountrysideOrCityId,
-                        principalTable: "CoateRecord",
+                        principalTable: "CoateRecords",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Students_CoateRecord_DistrictOrCityId",
+                        name: "FK_Students_CoateRecords_DistrictOrCityId",
                         column: x => x.DistrictOrCityId,
-                        principalTable: "CoateRecord",
+                        principalTable: "CoateRecords",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Students_CoateRecord_RegionOrCityId",
+                        name: "FK_Students_CoateRecords_RegionOrCityId",
                         column: x => x.RegionOrCityId,
-                        principalTable: "CoateRecord",
+                        principalTable: "CoateRecords",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Students_CoateRecord_VillageId",
+                        name: "FK_Students_CoateRecords_VillageId",
                         column: x => x.VillageId,
-                        principalTable: "CoateRecord",
+                        principalTable: "CoateRecords",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -305,13 +291,36 @@ namespace WebUI.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Avatars",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    FileName = table.Column<string>(type: "text", nullable: true),
+                    Path = table.Column<string>(type: "text", nullable: true),
+                    OrderBy = table.Column<int>(type: "integer", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    StudentId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Avatars", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Avatars_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "CoateRecordId", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, null, "c94b51e5-52f3-4a06-a91b-f22a1588f9a4", null, false, false, null, "00000000000001", "00000000000001", "AQAAAAEAACcQAAAAEBUPU+da6Qf+57j94hSao0iqnB2hUfwQ2DjQrXLmBVgWa0Z5DG/XPYwxiPfXeoNfCA==", null, false, "0382afaf-aeae-47ef-983d-c194ba94c64e", false, "superadmin" });
+                values: new object[] { 1, 0, null, "c94b51e5-52f3-4a06-a91b-f22a1588f9a4", null, false, false, null, "00000000000001", "00000000000001", "AQAAAAEAACcQAAAAEL7ONdPwrD7TLAU5rmP+RTzqFT03V9lNBtBCohYavSzGF8T2BQsvuGAtvz0nJgo81A==", null, false, "0382afaf-aeae-47ef-983d-c194ba94c64e", false, "superadmin" });
 
             migrationBuilder.InsertData(
-                table: "CoateRecord",
+                table: "CoateRecords",
                 columns: new[] { "Id", "CoateType", "Code", "Created", "CreatedBy", "LastModified", "LastModifiedBy", "Name", "Order", "ParentId" },
                 values: new object[,]
                 {
@@ -332,7 +341,7 @@ namespace WebUI.Data.Migrations
                 values: new object[] { 1, "200", 4, 158, "Общежитие №1", "Общежитие №1", 5, 12 });
 
             migrationBuilder.InsertData(
-                table: "CoateRecord",
+                table: "CoateRecords",
                 columns: new[] { "Id", "CoateType", "Code", "Created", "CreatedBy", "LastModified", "LastModifiedBy", "Name", "Order", "ParentId" },
                 values: new object[,]
                 {
@@ -397,7 +406,7 @@ namespace WebUI.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "CoateRecord",
+                table: "CoateRecords",
                 columns: new[] { "Id", "CoateType", "Code", "Created", "CreatedBy", "LastModified", "LastModifiedBy", "Name", "Order", "ParentId" },
                 values: new object[,]
                 {
@@ -920,7 +929,7 @@ namespace WebUI.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "CoateRecord",
+                table: "CoateRecords",
                 columns: new[] { "Id", "CoateType", "Code", "Created", "CreatedBy", "LastModified", "LastModifiedBy", "Name", "Order", "ParentId" },
                 values: new object[,]
                 {
@@ -1927,7 +1936,7 @@ namespace WebUI.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "CoateRecord",
+                table: "CoateRecords",
                 columns: new[] { "Id", "CoateType", "Code", "Created", "CreatedBy", "LastModified", "LastModifiedBy", "Name", "Order", "ParentId" },
                 values: new object[,]
                 {
@@ -2831,8 +2840,13 @@ namespace WebUI.Data.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_CoateRecord_ParentId",
-                table: "CoateRecord",
+                name: "IX_Avatars_StudentId",
+                table: "Avatars",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CoateRecords_ParentId",
+                table: "CoateRecords",
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
@@ -2884,13 +2898,10 @@ namespace WebUI.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "FileModels");
+                name: "Avatars");
 
             migrationBuilder.DropTable(
                 name: "Images");
-
-            migrationBuilder.DropTable(
-                name: "Students");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -2899,10 +2910,13 @@ namespace WebUI.Data.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "Students");
+
+            migrationBuilder.DropTable(
                 name: "Hostels");
 
             migrationBuilder.DropTable(
-                name: "CoateRecord");
+                name: "CoateRecords");
         }
     }
 }

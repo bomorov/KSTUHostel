@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,50 +13,47 @@ using WebUI.Models.DTOs;
 
 namespace WebUI.Interfaces
 {
-    public interface IHostelRepository
+    public interface IStudentRepository
     {
-        Task<List<HostelDto>> Get();
+        Student Create(int id);
 
-        Hostel Create(int id);
+        Task<Student> Create(Student student, List<IFormFile> files);
 
-        Task<Hostel> Create(Hostel hostel, List<IFormFile> files);
-
-        Task<HostelDto> Get(int? id);
+        Task<List<StudentDto>> Get();
     }
 
-    public class HostelRepository : IHostelRepository
+    public class StudentRepository : IStudentRepository
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
 
+        public async Task<List<StudentDto>> Get()
+        {
+            return await _mapper.ProjectTo<StudentDto>(_context.Students).ToListAsync();
+        }
 
-        public HostelRepository(ApplicationDbContext context, IMapper mapper)
+        public StudentRepository(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<List<HostelDto>> Get()
+        public Student Create(int id)
         {
-            return await _mapper.ProjectTo<HostelDto>(_context.Hostels).ToListAsync();
-        }
-
-        public Hostel Create(int id)
-        {
-            Hostel hostel = new Hostel();
-            return hostel;
+            Student student = new Student();
+            return student;
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<Hostel> Create(Hostel hostel, List<IFormFile> files)
+        public async Task<Student> Create(Student student, List<IFormFile> files)
         {
-            _context.Add(hostel);
+            _context.Add(student);
             await _context.SaveChangesAsync();
 
             try
             {
-                string directory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Files\\Hostels\\" + hostel.Id.ToString());
+                string directory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Files\\Students\\" + student.Id.ToString());
                 if (!Directory.Exists(directory))
                 {
                     DirectoryInfo di = Directory.CreateDirectory(directory);
@@ -71,24 +69,19 @@ namespace WebUI.Interfaces
                         await item.CopyToAsync(stream);
                     }
                     memory.Position = 0;
-                    string fpath = "/Files/Hostels/" + hostel.Id.ToString() + "/" + fileName;
-                    _context.Images.Add(new Image { HostelId = hostel.Id, Path = fpath, CreateDate = DateTime.Now, FileName = fileName, OrderBy = order });
+                    string fpath = "/Files/Students/" + student.Id.ToString() + "/" + fileName;
+                    _context.Avatars.Add(new Avatar { StudentId = student.Id, Path = fpath, CreateDate = DateTime.Now, FileName = fileName, OrderBy = order });
                     await _context.SaveChangesAsync();
-                    if (order == 1) { hostel.Map = fpath; await _context.SaveChangesAsync(); }
+                    if (order == 1) { student.Path = fpath; await _context.SaveChangesAsync(); }
                     order++;
                 }
             }
             catch
             {
-                return hostel;
+                return student;
             }
 
-            return hostel;
-        }
-
-        public async Task<HostelDto> Get(int? id)
-        {
-            return await _mapper.ProjectTo<HostelDto>(_context.Hostels).FirstOrDefaultAsync(m => m.Id == id);
+            return student;
         }
     }
 }

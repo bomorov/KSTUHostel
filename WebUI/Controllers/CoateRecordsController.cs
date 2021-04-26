@@ -22,7 +22,7 @@ namespace WebUI.Controllers
         // GET: CoateRecords
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.CoateRecord.Include(c => c.Parent);
+            var applicationDbContext = _context.CoateRecords.Include(c => c.Parent);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace WebUI.Controllers
                 return NotFound();
             }
 
-            var coateRecord = await _context.CoateRecord
+            var coateRecord = await _context.CoateRecords
                 .Include(c => c.Parent)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (coateRecord == null)
@@ -48,7 +48,7 @@ namespace WebUI.Controllers
         // GET: CoateRecords/Create
         public IActionResult Create()
         {
-            ViewData["ParentId"] = new SelectList(_context.CoateRecord, "Id", "Id");
+            ViewData["ParentId"] = new SelectList(_context.CoateRecords, "Id", "Id");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace WebUI.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ParentId"] = new SelectList(_context.CoateRecord, "Id", "Id", coateRecord.ParentId);
+            ViewData["ParentId"] = new SelectList(_context.CoateRecords, "Id", "Id", coateRecord.ParentId);
             return View(coateRecord);
         }
 
@@ -77,12 +77,12 @@ namespace WebUI.Controllers
                 return NotFound();
             }
 
-            var coateRecord = await _context.CoateRecord.FindAsync(id);
+            var coateRecord = await _context.CoateRecords.FindAsync(id);
             if (coateRecord == null)
             {
                 return NotFound();
             }
-            ViewData["ParentId"] = new SelectList(_context.CoateRecord, "Id", "Id", coateRecord.ParentId);
+            ViewData["ParentId"] = new SelectList(_context.CoateRecords, "Id", "Id", coateRecord.ParentId);
             return View(coateRecord);
         }
 
@@ -118,7 +118,7 @@ namespace WebUI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ParentId"] = new SelectList(_context.CoateRecord, "Id", "Id", coateRecord.ParentId);
+            ViewData["ParentId"] = new SelectList(_context.CoateRecords, "Id", "Id", coateRecord.ParentId);
             return View(coateRecord);
         }
 
@@ -130,7 +130,7 @@ namespace WebUI.Controllers
                 return NotFound();
             }
 
-            var coateRecord = await _context.CoateRecord
+            var coateRecord = await _context.CoateRecords
                 .Include(c => c.Parent)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (coateRecord == null)
@@ -146,15 +146,15 @@ namespace WebUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var coateRecord = await _context.CoateRecord.FindAsync(id);
-            _context.CoateRecord.Remove(coateRecord);
+            var coateRecord = await _context.CoateRecords.FindAsync(id);
+            _context.CoateRecords.Remove(coateRecord);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CoateRecordExists(int id)
         {
-            return _context.CoateRecord.Any(e => e.Id == id);
+            return _context.CoateRecords.Any(e => e.Id == id);
         }
     }
 }

@@ -6,6 +6,8 @@ namespace WebUI.Models.DTOs
 {
     public class HostelDto : IMapFrom<Hostel>
     {
+        public int Id { get; set; }
+
         [Display(Name = "Название")]
         public string Name { get; set; }
 

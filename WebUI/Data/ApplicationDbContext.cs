@@ -1,9 +1,16 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using System;
 using System.Linq;
 using System.Reflection;
+using System.Security.Claims;
+using System.Threading;
+using System.Threading.Tasks;
 using WebUI.Data.Seeds;
 using WebUI.Models;
+using WebUI.Models.Common;
 using WebUI.Models.Identity;
 
 namespace WebUI.Data
@@ -20,7 +27,10 @@ namespace WebUI.Data
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Image> Images { get; set; }
-        public DbSet<FileModel> FileModels { get; set; }
+        public DbSet<CoateRecord> CoateRecords { get; set; }
+
+        public DbSet<Avatar> Avatars { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -33,6 +43,33 @@ namespace WebUI.Data
             builder.AddApplicationUserSeedData();
             builder.AddHostelSeedData();
         }
-        public DbSet<WebUI.Models.CoateRecord> CoateRecord { get; set; }
+
+        public override Task<int> SaveChangesAsync(CancellationToken token = new CancellationToken())
+        {
+            int userId = 0;
+            var httpContextAccessor = this.GetService<IHttpContextAccessor>();
+            string userIdVal = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!string.IsNullOrEmpty(userIdVal))
+                userId = Convert.ToInt32(userIdVal);
+
+            foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.CreatedBy = userId;
+                        entry.Entity.Created = DateTime.Now;
+                        break;
+
+                    case EntityState.Modified:
+                        entry.Entity.LastModifiedBy = userId;
+                        entry.Entity.LastModified = DateTime.Now;
+                        break;
+                }
+            }
+
+            return base.SaveChangesAsync(token);
+        }
     }
 }
